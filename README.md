@@ -4,5 +4,7 @@
 
 add property files to ```megatron/conf/job-type```
 
-``` make ```
+```make clean```
+
+```make rpm```
 
