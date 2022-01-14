@@ -4,13 +4,20 @@ Release:        1%{?dist}
 Summary:        Megatron - A System for Abuse- and Incident Handling
 BuildArch:      noarch
 
-License:        GPL
+License:        MIT
 Source0:        %{name}-%{version}.tar.gz
 
 Requires:       jre
+Requires(pre): shadow-utils
 
 %description
 Here we describe the megatron system
+
+%pre
+getent group megatron >/dev/null || groupadd -r megatron
+getent passwd u_megatron >/dev/null || \
+    useradd -m -r -g megatron -s /bin/bash -c "megatron-java" u_megatron
+exit 0
 
 %install
 mkdir -p %{buildroot}/usr/local/megatron/lib
@@ -41,4 +48,3 @@ rm -rf $RPM_BUILD_ROOT
 %attr(-, u_megatron, megatron) /var/megatron
 %attr(0755, u_megatron, megatron) /bin/megatron.sh
 %attr(0755, u_megatron, megatron) /bin/megatron
-

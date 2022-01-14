@@ -28,7 +28,7 @@ rpm:
 
 	cp -r megatron BUILD/
 
-	rpmbuild -bb SPECS/megatron.spec
+	rpmbuild --define "_topdir `pwd`" -bb SPECS/megatron.spec
 
 	cp RPMS/noarch/* .
 

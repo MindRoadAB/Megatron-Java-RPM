@@ -4,11 +4,11 @@
 #   * /var/megatron
 #   * /etc/megatron
 
-#if [ $(whoami) != "u_megatron" ]; then
-#  echo "Error: This script must be executed by the u_megatron user."
-#  echo "Solution: sudo su u_megatron + rerun this script"
-#  exit 1
-#fi
+if [ $(whoami) != "u_megatron" ]; then
+  echo "Error: This script must be executed by the u_megatron user."
+  echo "Solution: sudo su u_megatron + rerun this script"
+  exit 1
+fi
 
 # Use UTF-8 (e.g. in generated filenames) 
 export LC_ALL=en_US.UTF-8
