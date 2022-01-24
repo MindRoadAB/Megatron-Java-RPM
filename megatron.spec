@@ -11,7 +11,11 @@ Requires:       jre
 Requires(pre): shadow-utils
 
 %description
-Here we describe the megatron system
+Megatron is a tool implemented by CERT-SE which collects and 
+analyses log files with bad machines, e.g. from Shadowserver.
+Apart from abuse mail handling, Megatron can be used to collect 
+statistics, convert log files, and do log file analysis during 
+incident handling.
 
 %pre
 getent group megatron >/dev/null || groupadd -r megatron
