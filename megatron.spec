@@ -42,6 +42,7 @@ cp megatron/megatron.sh %{buildroot}/bin/megatron.sh
 ln -s -f megatron.sh %{buildroot}/bin/megatron
 
 %post
+grep -qxF '10.0.2.2   megatron-db-host' /etc/hosts || echo '10.0.2.2   megatron-db-host' >> /etc/hosts
 
 %clean
 rm -rf $RPM_BUILD_ROOT
