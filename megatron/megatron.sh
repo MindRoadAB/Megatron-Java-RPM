@@ -21,7 +21,7 @@ export SITIC_JCONSOLE_OPTIONS=
 export SITIC_LIB=/usr/local/megatron/lib
 export SITIC_CONF=/etc/megatron:/etc/megatron/hibernate-mapping
 export SITIC_HIBERNATE_CLASSPATH=$SITIC_CONF:$SITIC_LIB/hibernate3.jar:$SITIC_LIB/activation.jar:$SITIC_LIB/slf4j-api-1.5.6.jar:$SITIC_LIB/antlr-2.7.6.jar:$SITIC_LIB/commons-collections-3.2.1.jar:$SITIC_LIB/dom4j-1.6.1.jar:$SITIC_LIB/javassist.jar:$SITIC_LIB/jta-1.1.jar:$SITIC_LIB/slf4j-log4j12-1.5.6.jar
-export SITIC_CLASSPATH=$SITIC_HIBERNATE_CLASSPATH:$SITIC_LIB/sitic-megatron.jar:$SITIC_LIB/log4j.jar:$SITIC_LIB/mysql-connector.jar:$SITIC_LIB/geoip.jar:$SITIC_LIB/mail.jar:$SITIC_LIB/rome.jar:$SITIC_LIB/jdom.jar:$SITIC_LIB/dnsjava.jar:$SITIC_LIB/joda-time.jar:$SITIC_LIB/commons-net.jar
+export SITIC_CLASSPATH=$SITIC_HIBERNATE_CLASSPATH:$SITIC_LIB/sitic-megatron.jar:$SITIC_LIB/log4j-core-2.17.1.jar:$SITIC_LIB/log4j-api-2.17.1.jar:$SITIC_LIB/log4j-1.2-api-2.17.1.jar:$SITIC_LIB/mysql-connector.jar:$SITIC_LIB/geoip.jar:$SITIC_LIB/mail.jar:$SITIC_LIB/rome.jar:$SITIC_LIB/jdom.jar:$SITIC_LIB/dnsjava.jar:$SITIC_LIB/joda-time.jar:$SITIC_LIB/commons-net.jar
 
 ALL_PARAMS=$*
 SKIP_LOCKFILE=$(echo $ALL_PARAMS | egrep '.*--help.*|.*--version.*|.*--list-prios.*|.*--list-jobs.*|.*--job-info.*|.*--ui-org.*|.*--whois.*' | wc -l | sed 's/ //g')
@@ -61,7 +61,7 @@ else
     fi
 fi
 
-$SITIC_JAVA $SITIC_JAVA_OPTIONS $SITIC_JCONSOLE_OPTIONS -cp $SITIC_CLASSPATH -Dfile.encoding=UTF-8 -Dmegatron.configfile=/etc/megatron/megatron-globals.properties $JAVA_CLASS $ALL_PARAMS
+$SITIC_JAVA $SITIC_JAVA_OPTIONS $SITIC_JCONSOLE_OPTIONS -cp $SITIC_CLASSPATH -Dfile.encoding=UTF-8 -Dlog4j1.compatibility="true" -Dlog4j.configuration=/etc/megatron/log4j.properties -Dmegatron.configfile=/etc/megatron/megatron-globals.properties $JAVA_CLASS $ALL_PARAMS
 MEGATRON_EXIT_CODE=$?
 if [ $QUIET = 0 ]; then
   echo `date`: "Megatron Finished."
